@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Generated logs and temporary files
+*.log
+*.tmp
+*.bak
+
+# Arduino / embedded build artifacts
+*.hex
+*.elf
+*.o
+*.a
+*.bin
+build/
+.cache/
+
+# Editor and operating system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
