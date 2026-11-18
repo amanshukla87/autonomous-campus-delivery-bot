@@ -151,7 +151,6 @@ Detailed measurements and test observations: [docs/calibration_and_results.md](d
 
 ## 🎥 Project Demonstration
 
-- **Video demonstration:** Add YouTube or Google Drive link here.
 - **Project photographs:** [media/images/](media/images/)
 - **AprilTag detection screenshots:** [media/screenshots/](media/screenshots/)
 
