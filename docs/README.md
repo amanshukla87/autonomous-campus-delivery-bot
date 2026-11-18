@@ -1,15 +1,20 @@
-# Project Documentation
+# Documentation Index
 
-This directory contains the supporting technical documentation for the Autonomous Campus Delivery Bot.
+This directory contains the project report and supporting technical documents for the Autonomous Campus Delivery Bot.
 
-The documentation is intended to describe the system design, hardware connections, software structure, implementation approach, and testing carried out during the project.
+## Documents
 
-## Documentation Scope
+| Document | Description |
+|---|---|
+| [Internship Report](Internship_Report.pdf) | Project work and learning documented during the internship. |
+| [Problem Statement](problem_statement.md) | Project background, objectives, requirements, and scope. |
+| Problem Statement – Original Image | Original problem statement provided for the project: `problem_statement_original.jpg`. |
+| [System Architecture](architecture.md) | System-level design and interaction between the Raspberry Pi, Arduino, and connected hardware. |
+| [Calibration and Results](calibration_and_results.md) | Calibration procedures, test observations, and results recorded during implementation. |
+| [Future Scope](future_scope.md) | Possible improvements and features proposed beyond the current implementation. |
 
-- **System architecture:** Overall design and interaction between the Raspberry Pi and Arduino.
-- **Problem statement:** Project objectives, requirements, and operating context.
-- **Hardware documentation:** Components, wiring, pin assignments, and mechanical assembly.
-- **Software documentation:** Raspberry Pi application and Arduino motor-controller firmware.
-- **Testing and results:** Test procedures, observations, and verified results.
+## Notes
 
-Project details and performance figures should reflect the actual implementation and recorded tests. Proposed features or future improvements should be identified separately from completed work.
+- Documents will be added to this directory as they are prepared and verified.
+- Results and specifications should be included only when supported by project records or actual testing.
+- Proposed or unimplemented features are described as future scope, not as completed functionality.
