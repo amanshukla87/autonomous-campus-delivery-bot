@@ -6,7 +6,7 @@ The system uses a **Raspberry Pi 5** for camera-based vision and high-level deci
 
 Developed during the **Kalam Pragati MakeX Internship 2025 – Autonomous Robotics**, organised by **ERA Foundation** in collaboration with **Dr. A.P.J. Abdul Kalam Technical University (AKTU), Lucknow**.
 
-![Autonomous Campus Delivery Bot](media/images/robot_front.jpg)
+![Autonomous Campus Delivery Bot](media/images/robot_front_view.jpeg)
 
 ---
 
@@ -38,15 +38,22 @@ The original problem statement is available in [docs/problem_statement.md](docs/
 
 The robot combines camera-based navigation with a separate embedded motor-control system.
 
-- **AprilTag-based navigation:** The Raspberry Pi camera detects AprilTag markers placed along the route. Detected tag IDs are mapped to predefined movement commands.
-- **Hierarchical control:** The Raspberry Pi handles image processing and navigation decisions, then communicates commands to the Arduino over USB serial.
-- **Motor control:** The Arduino processes movement commands and controls the L298N motor driver.
-- **Obstacle monitoring:** The Arduino monitors the HC-SR04 ultrasonic sensor and can stop the motors when an obstacle is detected within the configured safety distance.
-- **Fail-safe behaviour:** The system is designed to stop when no valid navigation instruction is available.
+- **AprilTag-based navigation:** The Raspberry Pi detects `tag36h11` markers and maps tag IDs 0–4 to the movement commands shown below.
+- **Hierarchical control:** The Raspberry Pi handles image processing and navigation decisions, then sends single-character commands to the Arduino Uno over USB serial at 9600 baud.
+- **Motor control:** The Arduino processes `F`, `B`, `L`, `R`, and `S` commands and controls the L298N motor driver.
+- **Obstacle monitoring:** The Arduino reads the HC-SR04 ultrasonic sensor, slows forward movement below 30 cm, and initiates its obstacle-avoidance routine below 15 cm.
+- **Fail-safe behaviour:** The Raspberry Pi sends `S` when no eligible tag is visible; the Arduino also provides independent ultrasonic obstacle handling.
 
-Example navigation commands:
+### AprilTag command map (family tag36h11)
 
-`FORWARD` · `LEFT` · `RIGHT` · `STOP`
+| Tag ID | Action | Command sent to Arduino |
+|---|---|---|
+| 0 | Turn Left | `L` |
+| 1 | Turn Right | `R` |
+| 2 | Align Forward (steers left/right to keep the tag centred) | `F` / `L` / `R` |
+| 3 | Move Backward | `B` |
+| 4 | Stop & Exit | `S` |
+| No tag visible | Stop (fail-safe) | `S` |
 
 ### Why AprilTags?
 
@@ -64,7 +71,7 @@ The system follows a hierarchical control approach:
 2. Detect and identify AprilTag markers.
 3. Map the detected tag ID to a movement command.
 4. Transmit the command to the Arduino over serial communication.
-5. Check obstacle distance and apply the motor-control safety logic.
+5. Check obstacle distance and apply the Arduino motor-control safety logic (slow below 30 cm; obstacle avoidance below 15 cm).
 6. Execute the permitted movement and repeat the navigation cycle.
 
 Detailed explanation: [docs/architecture.md](docs/architecture.md).
@@ -131,7 +138,7 @@ sudo apt install python3-picamera2
 
 **3. Configure serial communication**
 
-The serial device is commonly `/dev/ttyACM0`, but the actual port depends on the connected board and operating system. Update the configuration in `config.py` if necessary.
+The serial device is commonly `/dev/ttyACM0`, but the actual port depends on the connected board and operating system. Update the serial device path in `main.py` if necessary.
 
 Refer to the [Raspberry Pi software guide](software/raspberry_pi/README.md) and [Arduino firmware guide](firmware/arduino_motor_controller/README.md) before running the complete system.
 
@@ -151,8 +158,21 @@ Detailed measurements and test observations: [docs/calibration_and_results.md](d
 
 ## 🎥 Project Demonstration
 
-- **Project photographs:** [media/images/](media/images/)
-- **AprilTag detection screenshots:** [media/screenshots/](media/screenshots/)
+### Robot photographs
+
+| Front view | Side view |
+|---|---|
+| ![Robot front view](media/images/robot_front_view.jpeg) | ![Robot side view](media/images/robot_side_view.jpeg) |
+
+| Top view | Robot with internship report |
+|---|---|
+| ![Robot top view](media/images/robot_top_view.jpeg) | ![Robot with report](media/images/robot_with_report.jpeg) |
+
+### AprilTag navigation tests
+
+| Tag ID 1 (side view) | Tag ID 1 (top view) |
+|---|---|
+| ![ID 1 side](media/images/apriltag_tests/apriltag_id1_test_side.jpg) | ![ID 1 top](media/images/apriltag_tests/apriltag_id1_test_top.jpg) |
 
 ## 🚀 Future Scope
 
