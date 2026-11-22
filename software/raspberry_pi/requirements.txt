@@ -1,2 +1,4 @@
-# Python dependencies will be listed here after the project
-# implementation and its imports have been verified.
+opencv-python
+numpy
+pupil-apriltags
+pyserial
