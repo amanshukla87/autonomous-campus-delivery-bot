@@ -138,7 +138,7 @@ try:
             break
 
 except KeyboardInterrupt:
-    print("\\n[CTRL+C] Interrupted by user")
+    print("\n[CTRL+C] Interrupted by user")
 
 finally:
     send_command('S')
