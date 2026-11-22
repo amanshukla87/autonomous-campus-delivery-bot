@@ -97,21 +97,20 @@ try:
                 print("[🛑] STOP tag detected. Exiting.")
                 break
 
-            if now - last_action_time >= send_interval:
-                action = {
-                    0: 'L',
-                    1: 'R',
-                    2: 'F',
-                    3: 'B',
-                }.get(tag_id)
+            action = {
+                0: 'L',
+                1: 'R',
+                2: 'F',
+                3: 'B',
+            }.get(tag_id)
 
-                if action is not None:
-                    send_command(action)
-                    last_action_time = now
-                else:
-                    # Unknown visible tags must not leave an old movement active.
-                    if last_command_sent != 'S':
-                        send_command('S')
+            if action is None:
+                # Unknown visible tags must not leave an old movement active.
+                if last_command_sent != 'S':
+                    send_command('S')
+            elif now - last_action_time >= send_interval:
+                send_command(action)
+                last_action_time = now
 
             # Draw the selected tag outline and ID.
             for i in range(4):
