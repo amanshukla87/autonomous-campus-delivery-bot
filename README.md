@@ -55,6 +55,8 @@ The robot combines camera-based navigation with a separate embedded motor-contro
 | 4 | Stop & Exit | `S` |
 | No tag visible | Stop (fail-safe) | `S` |
 
+**Implementation note:** This table reflects the current Raspberry Pi source code and is the authoritative tag-to-command mapping for this repository.
+
 ### Why AprilTags?
 
 AprilTags provide identifiable visual markers that can be used for navigation along predefined indoor routes.
@@ -149,7 +151,7 @@ The project involves testing the robot's sensing, navigation, and movement-contr
 | Test Area | Evaluation |
 |---|---|
 | Ultrasonic sensing | Distance measurement and obstacle detection |
-| Obstacle response | Motor stopping at the configured safety threshold |
+| Obstacle response | Slows forward movement below 30 cm; initiates avoidance below 15 cm |
 | AprilTag detection | Marker recognition under different lighting conditions |
 | Serial communication | Command transfer between Raspberry Pi and Arduino |
 | Motor calibration | PWM adjustment for controlled movement |
