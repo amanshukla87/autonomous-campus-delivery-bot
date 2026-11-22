@@ -43,7 +43,6 @@ const int slowDist = 30;
 char currentCommand = 'S';
 bool inAvoidanceMode = false;
 bool tryLeftNext = false;
-bool debugUSS = false;
 
 // =====================
 // Setup
